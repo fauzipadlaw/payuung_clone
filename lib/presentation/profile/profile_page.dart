@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:payuung_clone/presentation/profile/components/profile_appbar.dart';
 import 'package:payuung_clone/presentation/profile/components/profile_row.dart';
+import 'package:payuung_clone/utils/colors.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -48,7 +49,9 @@ class ProfilePage extends StatelessWidget {
                       bottom: 4,
                       right: 18,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          _dialogBuilder(context);
+                        },
                         child: Container(
                           height: 25,
                           width: 25,
@@ -104,6 +107,58 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+          contentPadding: const EdgeInsets.all(0),
+          content: Container(
+            height: 145,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
+            child: const Column(
+              children: [
+                SizedBox(
+                  height: 4,
+                ),
+                ProfileRow(
+                  label: 'Buka kamera',
+                  margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                ),
+                ProfileRow(
+                  label: 'Ambil dari galeri',
+                  margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                ),
+              ],
+            ),
+          ),
+          actionsPadding: const EdgeInsets.only(bottom: 8),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: <Widget>[
+            TextButton(
+              child: const Text(
+                'Batal',
+                style: TextStyle(color: AppColors.yellow),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
