@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payuung_clone/presentation/personal_info/components/bio_form.dart';
 import 'package:payuung_clone/presentation/personal_info/components/personal_info_appbar.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
@@ -84,6 +85,17 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                 ),
               ],
             ),
+          ),
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24,
+              ),
+              child: BioForm(),
+            ),
+          ),
+          const SizedBox(
+            height: 40,
           ),
         ],
       ),
