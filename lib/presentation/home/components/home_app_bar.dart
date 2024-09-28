@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payuung_clone/presentation/profile/profile_page.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -64,22 +65,30 @@ class HomeAppBar extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          margin: const EdgeInsets.only(right: 20, left: 20, bottom: 8),
-          height: 45,
-          width: 45,
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: const Text(
-            'M',
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          },
+          child: Container(
+            margin: const EdgeInsets.only(right: 20, left: 20, bottom: 8),
+            height: 45,
+            width: 45,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(100),
             ),
-            textAlign: TextAlign.center,
+            child: const Text(
+              'M',
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ],
