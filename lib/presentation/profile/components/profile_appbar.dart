@@ -6,6 +6,8 @@ class ProfileAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.grey.shade100,
+      scrolledUnderElevation: 0.0,
       title: const Text(
         'Profile',
         style: TextStyle(fontWeight: FontWeight.w500),
