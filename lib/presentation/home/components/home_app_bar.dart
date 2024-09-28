@@ -9,6 +9,8 @@ class HomeAppBar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return AppBar(
       backgroundColor: AppColors.yellow,
+      elevation: 0.0,
+      scrolledUnderElevation: 0.0,
       leading: Container(
         margin: const EdgeInsets.only(left: 20),
         child: const Column(
