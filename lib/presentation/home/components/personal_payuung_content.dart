@@ -79,6 +79,38 @@ class PersonalPayuungContent extends StatelessWidget {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: SectionTitle(
+              title: 'Explore Wellness',
+              action: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(30)),
+                child: Row(
+                  children: [
+                    const Text('Wishlist'),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 18,
+                      width: 18,
+                      margin: const EdgeInsets.only(left: 6),
+                      decoration: BoxDecoration(
+                        color: AppColors.yellow,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: const Text(
+                        '0',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          
         ],
       ),
     );
