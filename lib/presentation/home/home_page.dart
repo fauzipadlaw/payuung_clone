@@ -21,8 +21,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(52),
         child: HomeAppBar(),
@@ -42,9 +42,7 @@ class _HomePageState extends State<HomePage>
               ]),
         ),
         child: SingleChildScrollView(
-          child: SizedBox(
-            height: size.height,
-            width: size.width,
+          child: IntrinsicHeight(
             child: HomeContent(
               tabController: _tabController,
             ),
