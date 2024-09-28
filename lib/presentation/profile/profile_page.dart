@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payuung_clone/presentation/personal_info/personal_info_page.dart';
 import 'package:payuung_clone/presentation/profile/components/profile_appbar.dart';
 import 'package:payuung_clone/presentation/profile/components/profile_row.dart';
 import 'package:payuung_clone/utils/colors.dart';
@@ -90,8 +91,17 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const ProfileRow(
-                icon: Icon(Icons.person_outline), label: 'Informasi Pribadi'),
+            ProfileRow(
+              icon: const Icon(Icons.person_outline),
+              label: 'Informasi Pribadi',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PersonalInfoPage()),
+                );
+              },
+            ),
             const ProfileRow(
                 icon: Icon(Icons.document_scanner_outlined),
                 label: 'Syarat & Ketentuan'),
