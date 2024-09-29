@@ -6,6 +6,7 @@ class CustomSelectField extends StatelessWidget {
   final bool isMandatory;
   final List<DropdownMenuItem<dynamic>> items;
   final String hintText;
+  final TextEditingController? controller;
   const CustomSelectField({
     super.key,
     this.textEditingController,
@@ -13,6 +14,7 @@ class CustomSelectField extends StatelessWidget {
     this.isMandatory = true,
     required this.items,
     this.hintText = 'Pilih',
+    this.controller,
   });
 
   @override
@@ -51,14 +53,18 @@ class CustomSelectField extends StatelessWidget {
             hint: Align(
               alignment: Alignment.center,
               child: Text(
-                hintText,
+                controller?.text ?? hintText,
                 style: TextStyle(
-                  color: Colors.grey.shade500,
+                  color: controller?.text != null
+                      ? Colors.black
+                      : Colors.grey.shade500,
                 ),
               ),
             ),
             items: items,
-            onChanged: (_) {},
+            onChanged: (v) {
+              controller?.text = v;
+            },
             decoration: InputDecoration(
               alignLabelWithHint: true,
               border: OutlineInputBorder(

@@ -9,6 +9,7 @@ class CustomField extends StatelessWidget {
   final bool disabled;
   final void Function()? onTap;
   final EdgeInsets padding;
+  final TextEditingController? controller;
   const CustomField({
     super.key,
     this.textEditingController,
@@ -18,6 +19,7 @@ class CustomField extends StatelessWidget {
     this.onTap,
     this.disabled = false,
     this.padding = const EdgeInsets.only(bottom: 16.0),
+    this.controller,
   });
 
   @override
@@ -53,6 +55,7 @@ class CustomField extends StatelessWidget {
             height: 8,
           ),
           TextFormField(
+            controller: controller,
             readOnly: onTap != null,
             enabled: !disabled,
             onTap: onTap,

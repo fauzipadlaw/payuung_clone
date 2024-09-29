@@ -24,7 +24,7 @@ class DatabaseService {
       onCreate: (db, version) async {
         await db.execute(
           'CREATE TABLE profile (id INTEGER PRIMARY KEY, fullname TEXT,'
-          ' dob TEXT, sex TEXT, email TEXT, hp TEXT, education TEXT '
+          ' dob TEXT, sex TEXT, email TEXT, hp TEXT, education TEXT, '
           'marital_status TEXT, nik TEXT, ktp_image TEXT, address TEXT, province TEXT, city TEXT, distric TEXT, kelurahan TEXT, postal_code INTEGER, domicile_address TEXT, domicile_province TEXT, domicile_city TEXT, domicile_distric TEXT, domicile_kelurahan TEXT, domicile_postal_code INTEGER, company TEXT, company_address TEXT, position TEXT, work_duration TEXT, source_income TEXT, gross_income TEXT, bank_name TEXT, bank_branch TEXT, account_number TEXT, account_holder TEXT)',
         );
 
@@ -83,6 +83,11 @@ class DatabaseService {
     List<Map<String, Object?>> profiles = await db.query('profile');
     Map<String, Object?> profile = profiles.first;
     return Profile.fromJson(profile);
+  }
+
+  Future<void> update(String table, Map<String, dynamic> data) async {
+    final db = await database;
+    db.update(table, data);
   }
 
   Future<List<Wellness>> getWellness() async {
