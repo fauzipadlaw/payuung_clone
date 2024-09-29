@@ -20,12 +20,13 @@ class Profile {
   final String? domicileCity;
   final String? domicileDistric;
   final String? domicileKelurahan;
-  final String? domicilePostalCode;
+  final int? domicilePostalCode;
   final String? company;
   final String? companyAddress;
   final String? position;
   final String? workDuration;
   final String? sourceIncome;
+  final String? income;
   final String? bankName;
   final String? bankBranch;
   final String? accountNumber;
@@ -63,6 +64,7 @@ class Profile {
     this.bankBranch,
     this.accountNumber,
     this.accountHolder,
+    this.income,
   });
 
   factory Profile.fromJson(Map<String, dynamic> json) {
@@ -98,6 +100,7 @@ class Profile {
       bankBranch: json['bank_branch'],
       accountNumber: json['account_number'],
       accountHolder: json['account_holder'],
+      income: json['gross_income'],
     );
   }
 }

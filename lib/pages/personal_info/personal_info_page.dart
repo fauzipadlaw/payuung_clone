@@ -137,7 +137,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                     case 3:
                       return CompanyForm(
                         formKey: _companyFormkey,
-                        onSubmit: _nextStep,
                         onBack: _previousStep,
                       );
                     default:

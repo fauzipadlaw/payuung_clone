@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:payuung_clone/models/profile.dart';
 import 'package:payuung_clone/pages/personal_info/components/custom_field.dart';
 import 'package:payuung_clone/pages/personal_info/components/custom_select_field.dart';
 
+import '../../../services/database_service.dart';
 import '../../components/custom_button.dart';
 
 class CompanyForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
-  final Function onSubmit;
   final Function onBack;
   const CompanyForm({
     super.key,
     required this.formKey,
-    required this.onSubmit,
     required this.onBack,
   });
 
@@ -20,6 +20,37 @@ class CompanyForm extends StatefulWidget {
 }
 
 class _CompanyFormState extends State<CompanyForm> {
+  final _db = DatabaseService.instance;
+  final TextEditingController _company = TextEditingController();
+  final TextEditingController _address = TextEditingController();
+  final TextEditingController _position = TextEditingController();
+  final TextEditingController _duration = TextEditingController();
+  final TextEditingController _source = TextEditingController();
+  final TextEditingController _income = TextEditingController();
+  final TextEditingController _bank = TextEditingController();
+  final TextEditingController _branch = TextEditingController();
+  final TextEditingController _norek = TextEditingController();
+  final TextEditingController _holder = TextEditingController();
+
+  @override
+  initState() {
+    _db.getProfile().then((Profile profile) {
+      setState(() {
+        _company.text = profile.company ?? '';
+        _address.text = profile.companyAddress ?? '';
+        _position.text = profile.position ?? '';
+        _duration.text = profile.workDuration ?? '';
+        _source.text = profile.sourceIncome ?? '';
+        _income.text = profile.income ?? '';
+        _bank.text = profile.bankName ?? '';
+        _branch.text = profile.bankBranch ?? '';
+        _norek.text = profile.accountNumber ?? '';
+        _holder.text = profile.accountHolder ?? '';
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -27,48 +58,163 @@ class _CompanyFormState extends State<CompanyForm> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomField(
+            CustomField(
+              controller: _company,
               label: 'nama usaha / perusahaan',
               isMandatory: false,
             ),
-            const CustomField(
+            CustomField(
+              controller: _address,
               label: 'alamat usaha / perusahaan',
               isMandatory: false,
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _position,
               label: 'jabatan',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+                DropdownMenuItem(
+                  value: 'E',
+                  child: Text('E'),
+                ),
+              ],
               isMandatory: false,
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _duration,
               label: 'lama bekerja',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+                DropdownMenuItem(
+                  value: 'E',
+                  child: Text('E'),
+                ),
+              ],
               isMandatory: false,
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _source,
               label: 'sumber pendapatan',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+                DropdownMenuItem(
+                  value: 'E',
+                  child: Text('E'),
+                ),
+              ],
               isMandatory: false,
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _income,
               label: 'pendapatan kotor pertahun',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+                DropdownMenuItem(
+                  value: 'E',
+                  child: Text('E'),
+                ),
+              ],
               isMandatory: false,
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _bank,
               label: 'nama bank',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+                DropdownMenuItem(
+                  value: 'E',
+                  child: Text('E'),
+                ),
+              ],
               isMandatory: false,
             ),
-            const CustomField(
+            CustomField(
+              controller: _branch,
               label: 'cabang bank',
               isMandatory: false,
             ),
-            const CustomField(
+            CustomField(
+              controller: _norek,
               label: 'nomor rekening',
               isMandatory: false,
             ),
-            const CustomField(
+            CustomField(
+              controller: _holder,
               label: 'nama pemilik rekening',
               isMandatory: false,
             ),
@@ -87,7 +233,28 @@ class _CompanyFormState extends State<CompanyForm> {
                 Expanded(
                   child: CustomButton(
                     text: 'Simpan',
-                    onTap: () => widget.onSubmit(),
+                    onTap: () {
+                      _db.update('profile', {
+                        'company': _company.text != '' ? _company.text : null,
+                        'company_address':
+                            _address.text != '' ? _address.text : null,
+                        'position':
+                            _position.text != '' ? _position.text : null,
+                        'work_duration':
+                            _duration.text != '' ? _duration.text : null,
+                        'source_income':
+                            _source.text != '' ? _source.text : null,
+                        'bank_name': _bank.text != '' ? _bank.text : null,
+                        'bank_branch': _branch.text != '' ? _branch.text : null,
+                        'account_number':
+                            _norek.text != '' ? _norek.text : null,
+                        'account_holder':
+                            _holder.text != '' ? _holder.text : null,
+                        'gross_income':
+                            _income.text != '' ? _income.text : null,
+                      });
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ),
               ],

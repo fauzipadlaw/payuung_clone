@@ -5,6 +5,9 @@ import 'package:payuung_clone/pages/personal_info/components/custom_select_field
 import 'package:payuung_clone/pages/personal_info/components/ktp_field.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
+import '../../../models/profile.dart';
+import '../../../services/database_service.dart';
+
 class AddressForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final Function onSubmit;
@@ -21,7 +24,56 @@ class AddressForm extends StatefulWidget {
 }
 
 class _AddressFormState extends State<AddressForm> {
+  final TextEditingController _image = TextEditingController();
+  final TextEditingController _nik = TextEditingController();
+  final TextEditingController _address = TextEditingController();
+  final TextEditingController _province = TextEditingController();
+  final TextEditingController _city = TextEditingController();
+  final TextEditingController _distric = TextEditingController();
+  final TextEditingController _kelurahan = TextEditingController();
+  final TextEditingController _postalCode = TextEditingController();
+  final TextEditingController _addressD = TextEditingController();
+  final TextEditingController _provinceD = TextEditingController();
+  final TextEditingController _cityD = TextEditingController();
+  final TextEditingController _districD = TextEditingController();
+  final TextEditingController _kelurahanD = TextEditingController();
+  final TextEditingController _postalCodeD = TextEditingController();
   bool _domicileSameWithId = true;
+  final _db = DatabaseService.instance;
+
+  @override
+  initState() {
+    _db.getProfile().then((Profile profile) {
+      setState(() {
+        _image.text = profile.ktpImage ?? '';
+        _nik.text = profile.nik ?? '';
+        _address.text = profile.address ?? '';
+        _province.text = profile.province ?? '';
+        _city.text = profile.city ?? '';
+        _distric.text = profile.distric ?? '';
+        _kelurahan.text = profile.kelurahan ?? '';
+        _addressD.text = profile.domicileAddress ?? '';
+        _provinceD.text = profile.domicileProvince ?? '';
+        _cityD.text = profile.domicileCity ?? '';
+        _districD.text = profile.domicileDistric ?? '';
+        _kelurahanD.text = profile.domicileKelurahan ?? '';
+        _postalCode.text = profile.postalCode.toString();
+        _postalCodeD.text = profile.domicilePostalCode.toString();
+
+        if (_domicileSameWithId) {
+          _domicileSameWithId = !_domicileSameWithId;
+          _addressD.text = _address.text;
+          _provinceD.text = _province.text;
+          _cityD.text = _city.text;
+          _districD.text = _distric.text;
+          _kelurahanD.text = _kelurahan.text;
+          _postalCodeD.text = _postalCode.text;
+        }
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -29,30 +81,106 @@ class _AddressFormState extends State<AddressForm> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const KtpField(),
+            KtpField(
+              nikController: _nik,
+              imageController: _image,
+            ),
             const SizedBox(
               height: 20,
             ),
-            const CustomField(
+            CustomField(
+              controller: _address,
               label: 'alamat sesuai ktp',
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _province,
               label: 'provinsi',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+              ],
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _city,
               label: 'kota/kabupaten',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+              ],
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _distric,
               label: 'kecamatan',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+              ],
             ),
-            const CustomSelectField(
+            CustomSelectField(
+              controller: _kelurahan,
               label: 'kelurahan',
-              items: [],
+              items: const [
+                DropdownMenuItem(
+                  value: 'A',
+                  child: Text('A'),
+                ),
+                DropdownMenuItem(
+                  value: 'B',
+                  child: Text('B'),
+                ),
+                DropdownMenuItem(
+                  value: 'C',
+                  child: Text('C'),
+                ),
+                DropdownMenuItem(
+                  value: 'D',
+                  child: Text('D'),
+                ),
+              ],
             ),
-            const CustomField(label: 'kode pos'),
+            CustomField(controller: _postalCode, label: 'kode pos'),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Row(
@@ -73,6 +201,12 @@ class _AddressFormState extends State<AddressForm> {
                       onChanged: (v) => setState(
                         () {
                           _domicileSameWithId = !_domicileSameWithId;
+                          _addressD.text = _address.text;
+                          _provinceD.text = _province.text;
+                          _cityD.text = _city.text;
+                          _districD.text = _distric.text;
+                          _kelurahanD.text = _kelurahan.text;
+                          _postalCodeD.text = _postalCode.text;
                         },
                       ),
                     ),
@@ -82,26 +216,101 @@ class _AddressFormState extends State<AddressForm> {
               ),
             ),
             if (!_domicileSameWithId)
-              const Column(
+              Column(
                 children: [
-                  CustomField(label: 'alamat domisili'),
+                  CustomField(
+                    label: 'alamat domisili',
+                    controller: _addressD,
+                  ),
                   CustomSelectField(
                     label: 'provinsi',
-                    items: [],
+                    controller: _provinceD,
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'A',
+                        child: Text('A'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'B',
+                        child: Text('B'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'C',
+                        child: Text('C'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'D',
+                        child: Text('D'),
+                      ),
+                    ],
                   ),
                   CustomSelectField(
+                    controller: _cityD,
                     label: 'kota/kabupaten',
-                    items: [],
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'A',
+                        child: Text('A'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'B',
+                        child: Text('B'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'C',
+                        child: Text('C'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'D',
+                        child: Text('D'),
+                      ),
+                    ],
                   ),
                   CustomSelectField(
+                    controller: _districD,
                     label: 'kecamatan',
-                    items: [],
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'A',
+                        child: Text('A'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'B',
+                        child: Text('B'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'C',
+                        child: Text('C'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'D',
+                        child: Text('D'),
+                      ),
+                    ],
                   ),
                   CustomSelectField(
+                    controller: _kelurahanD,
                     label: 'kelurahan',
-                    items: [],
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'A',
+                        child: Text('A'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'B',
+                        child: Text('B'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'C',
+                        child: Text('C'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'D',
+                        child: Text('D'),
+                      ),
+                    ],
                   ),
-                  CustomField(label: 'kode pos'),
+                  CustomField(controller: _postalCodeD, label: 'kode pos'),
                 ],
               ),
             Row(
@@ -119,7 +328,33 @@ class _AddressFormState extends State<AddressForm> {
                 Expanded(
                   child: CustomButton(
                     text: 'Selanjutnya',
-                    onTap: () => widget.onSubmit(),
+                    onTap: () {
+                      _db.update('profile', {
+                        'nik': _nik.text != '' ? _nik.text : null,
+                        'ktp_image': _image.text != '' ? _image.text : null,
+                        'address': _address.text != '' ? _address.text : null,
+                        'province':
+                            _province.text != '' ? _province.text : null,
+                        'city': _city.text != '' ? _city.text : null,
+                        'distric': _distric.text != '' ? _distric.text : null,
+                        'kelurahan':
+                            _kelurahan.text != '' ? _kelurahan.text : null,
+                        'postal_code':
+                            _postalCode.text != '' ? _postalCode.text : null,
+                        'domicile_address':
+                            _addressD.text != '' ? _addressD.text : null,
+                        'domicile_province':
+                            _provinceD.text != '' ? _provinceD.text : null,
+                        'domicile_city': _cityD.text != '' ? _cityD.text : null,
+                        'domicile_distric':
+                            _districD.text != '' ? _districD.text : null,
+                        'domicile_kelurahan':
+                            _kelurahanD.text != '' ? _kelurahanD.text : null,
+                        'domicile_postal_code':
+                            _postalCodeD.text != '' ? _postalCodeD.text : null,
+                      });
+                      widget.onSubmit();
+                    },
                   ),
                 ),
               ],
