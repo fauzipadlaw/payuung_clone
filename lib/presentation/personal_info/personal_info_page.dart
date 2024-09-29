@@ -36,6 +36,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     }
   }
 
+  void _jumpToStep(int step) {
+    setState(() {
+      _step = step;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -65,16 +71,19 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       isActive: _step >= 1,
                       step: '1',
                       label: 'Biodata Diri',
+                      onTap: () => _jumpToStep(1),
                     ),
                     CircleStep(
                       isActive: _step >= 2,
                       step: '2',
                       label: 'Alamat Pribadi',
+                      onTap: () => _jumpToStep(2),
                     ),
                     CircleStep(
                       isActive: _step >= 3,
                       step: '3',
                       label: 'Informasi Perusahaan',
+                      onTap: () => _jumpToStep(3),
                     ),
                   ],
                 ),
