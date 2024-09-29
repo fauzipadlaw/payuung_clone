@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:payuung_clone/presentation/components/custom_button.dart';
 import 'package:payuung_clone/presentation/personal_info/components/custom_field.dart';
 import 'package:payuung_clone/presentation/personal_info/components/custom_select_field.dart';
-import 'package:payuung_clone/utils/colors.dart';
 
 class BioForm extends StatefulWidget {
-  const BioForm({super.key});
+  final GlobalKey<FormState> formKey;
+  final Function onSubmit;
+  const BioForm({
+    super.key,
+    required this.formKey,
+    required this.onSubmit,
+  });
 
   @override
   State<BioForm> createState() => _BioFormState();
@@ -25,6 +31,7 @@ class _BioFormState extends State<BioForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: widget.formKey,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -122,23 +129,10 @@ class _BioFormState extends State<BioForm> {
                 ),
               ],
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.yellow,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Selanjutnya',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )),
-            )
+            CustomButton(
+              text: 'Selanjutnya',
+              onTap: () => widget.onSubmit(),
+            ),
           ],
         ),
       ),

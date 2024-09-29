@@ -8,6 +8,7 @@ class CustomField extends StatelessWidget {
   final IconData? suffix;
   final bool disabled;
   final void Function()? onTap;
+  final EdgeInsets padding;
   const CustomField({
     super.key,
     this.textEditingController,
@@ -16,12 +17,13 @@ class CustomField extends StatelessWidget {
     this.suffix,
     this.onTap,
     this.disabled = false,
+    this.padding = const EdgeInsets.only(bottom: 16.0),
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

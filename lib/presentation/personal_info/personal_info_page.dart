@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:payuung_clone/presentation/personal_info/components/address_form.dart';
 import 'package:payuung_clone/presentation/personal_info/components/bio_form.dart';
+import 'package:payuung_clone/presentation/personal_info/components/company_form.dart';
 import 'package:payuung_clone/presentation/personal_info/components/personal_info_appbar.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
@@ -14,13 +16,32 @@ class PersonalInfoPage extends StatefulWidget {
 
 class _PersonalInfoPageState extends State<PersonalInfoPage> {
   int _step = 1;
+  final _bioFormkey = GlobalKey<FormState>();
+  final _addressFormkey = GlobalKey<FormState>();
+  final _companyFormkey = GlobalKey<FormState>();
+
+  void _nextStep() {
+    if (_step != 3) {
+      setState(() {
+        _step++;
+      });
+    }
+  }
+
+  void _previousStep() {
+    if (_step != 1) {
+      setState(() {
+        _step--;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade50,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(52),
         child: PersonalInfoAppbar(),
@@ -86,13 +107,33 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 24,
-              ),
-              child: BioForm(),
-            ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
+                child: Builder(builder: (BuildContext context) {
+                  switch (_step) {
+                    case 1:
+                      return BioForm(
+                        formKey: _bioFormkey,
+                        onSubmit: _nextStep,
+                      );
+                    case 2:
+                      return AddressForm(
+                        formKey: _addressFormkey,
+                        onSubmit: _nextStep,
+                        onBack: _previousStep,
+                      );
+                    case 3:
+                      return const CompanyForm();
+                    default:
+                      return BioForm(
+                        formKey: _bioFormkey,
+                        onSubmit: _nextStep,
+                      );
+                  }
+                })),
           ),
           const SizedBox(
             height: 40,

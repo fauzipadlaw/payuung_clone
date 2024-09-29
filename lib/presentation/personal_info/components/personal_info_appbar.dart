@@ -6,7 +6,7 @@ class PersonalInfoAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade50,
       scrolledUnderElevation: 0.0,
       title: const Text(
         'Informasi Pribadi',
