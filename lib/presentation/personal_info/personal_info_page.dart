@@ -126,7 +126,11 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         onBack: _previousStep,
                       );
                     case 3:
-                      return const CompanyForm();
+                      return CompanyForm(
+                        formKey: _companyFormkey,
+                        onSubmit: _nextStep,
+                        onBack: _previousStep,
+                      );
                     default:
                       return BioForm(
                         formKey: _bioFormkey,

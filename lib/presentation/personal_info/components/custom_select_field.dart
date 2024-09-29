@@ -5,12 +5,14 @@ class CustomSelectField extends StatelessWidget {
   final String label;
   final bool isMandatory;
   final List<DropdownMenuItem<dynamic>> items;
+  final String hintText;
   const CustomSelectField({
     super.key,
     this.textEditingController,
     required this.label,
     this.isMandatory = true,
     required this.items,
+    this.hintText = 'Pilih',
   });
 
   @override
@@ -46,6 +48,15 @@ class CustomSelectField extends StatelessWidget {
             height: 8,
           ),
           DropdownButtonFormField(
+            hint: Align(
+              alignment: Alignment.center,
+              child: Text(
+                hintText,
+                style: TextStyle(
+                  color: Colors.grey.shade500,
+                ),
+              ),
+            ),
             items: items,
             onChanged: (_) {},
             decoration: InputDecoration(
