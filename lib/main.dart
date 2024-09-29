@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:payuung_clone/presentation/home/home_page.dart';
+import 'package:payuung_clone/presentation/payuung/payuung_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('id'),
       ],
-      home: const HomePage(),
+      home: const PayuungApp(),
     );
   }
 }
