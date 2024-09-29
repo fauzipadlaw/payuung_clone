@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/home/home_page.dart';
-import 'package:payuung_clone/presentation/payuung/nav_item.dart';
+import 'package:payuung_clone/pages/home/home_page.dart';
+import 'package:payuung_clone/pages/payuung/nav_item.dart';
 
 class PayuungApp extends StatefulWidget {
   const PayuungApp({super.key});

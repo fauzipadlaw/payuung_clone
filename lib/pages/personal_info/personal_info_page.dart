@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/personal_info/components/address_form.dart';
-import 'package:payuung_clone/presentation/personal_info/components/bio_form.dart';
-import 'package:payuung_clone/presentation/personal_info/components/company_form.dart';
-import 'package:payuung_clone/presentation/personal_info/components/personal_info_appbar.dart';
+import 'package:payuung_clone/pages/personal_info/components/address_form.dart';
+import 'package:payuung_clone/pages/personal_info/components/bio_form.dart';
+import 'package:payuung_clone/pages/personal_info/components/company_form.dart';
+import 'package:payuung_clone/pages/personal_info/components/personal_info_appbar.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 import 'components/circle_step.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/personal_info/components/custom_field.dart';
+import 'package:payuung_clone/pages/personal_info/components/custom_field.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class KtpField extends StatelessWidget {

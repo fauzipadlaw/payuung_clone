@@ -27,7 +27,7 @@ class GridIImage extends StatelessWidget {
             wellness.title ?? '',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 10),
           if (wellness.discount != null && wellness.oldPrice != null)
@@ -36,20 +36,20 @@ class GridIImage extends StatelessWidget {
                 Text(
                   Helpers.formatToRpCurrency(wellness.oldPrice ?? 0),
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     decoration: TextDecoration.lineThrough,
                   ),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   '${wellness.discount?.round()}% OFF',
-                  style: const TextStyle(fontSize: 12, color: Colors.red),
+                  style: const TextStyle(fontSize: 10, color: Colors.red),
                 ),
               ],
             ),
           Text(
             Helpers.formatToRpCurrency(wellness.price ?? 0),
-            style: const TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 12),
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/personal_info/personal_info_page.dart';
-import 'package:payuung_clone/presentation/profile/components/profile_appbar.dart';
-import 'package:payuung_clone/presentation/profile/components/profile_row.dart';
+import 'package:payuung_clone/pages/personal_info/personal_info_page.dart';
+import 'package:payuung_clone/pages/profile/components/profile_appbar.dart';
+import 'package:payuung_clone/pages/profile/components/profile_row.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class ProfilePage extends StatelessWidget {

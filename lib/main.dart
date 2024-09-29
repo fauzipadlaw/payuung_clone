@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:payuung_clone/presentation/payuung/payuung_app.dart';
+import 'package:payuung_clone/pages/payuung/payuung_app.dart';
+import 'package:payuung_clone/services/database_service.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // for simulator and desktop
+  // sqfliteFfiInit();
+  // databaseFactory = databaseFactoryFfi;
+  await DatabaseService.instance.getDatabase();
   runApp(const MyApp());
 }
 

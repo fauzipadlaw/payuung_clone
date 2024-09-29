@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/models/wellness.dart';
-import 'package:payuung_clone/presentation/home/components/grid_icon.dart';
-import 'package:payuung_clone/presentation/home/components/grid_image.dart';
-import 'package:payuung_clone/presentation/home/components/section_title.dart';
+import 'package:payuung_clone/pages/home/components/grid_icon.dart';
+import 'package:payuung_clone/pages/home/components/grid_image.dart';
+import 'package:payuung_clone/pages/home/components/section_title.dart';
+import 'package:payuung_clone/services/database_service.dart';
 import 'package:payuung_clone/utils/colors.dart';
 import 'package:text_marquee/text_marquee.dart';
 
@@ -15,6 +15,8 @@ class PersonalPayuungContent extends StatefulWidget {
 
 class _PersonalPayuungContentState extends State<PersonalPayuungContent> {
   String? _dropdownValue = 'Terpopuler';
+  final _db = DatabaseService.instance;
+
   final List<String> _dropdownItems = [
     'Terpopuler',
     'A to Z',
@@ -163,16 +165,21 @@ class _PersonalPayuungContentState extends State<PersonalPayuungContent> {
             ),
           ),
           Expanded(
-            child: SizedBox(
-              height: (dummy.length + 1) / 2 * 300,
-              child: GridView.count(
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.5,
-                  children: List.generate(dummy.length, (index) {
-                    return GridIImage(wellness: dummy[index]);
-                  })),
-            ),
+            child: FutureBuilder(
+                future: _db.getWellness(),
+                builder: (context, snapshot) {
+                  return SizedBox(
+                    height: ((snapshot.data?.length ?? 0) + 1) / 2 * 300,
+                    child: GridView.count(
+                        physics: const NeverScrollableScrollPhysics(),
+                        crossAxisCount: 2,
+                        childAspectRatio: 1 / 1.5,
+                        children:
+                            List.generate(snapshot.data?.length ?? 0, (index) {
+                          return GridIImage(wellness: snapshot.data![index]);
+                        })),
+                  );
+                }),
           ),
         ],
       ),

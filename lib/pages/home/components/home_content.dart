@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/home/components/personal_payuung_content.dart';
+import 'package:payuung_clone/pages/home/components/personal_payuung_content.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class HomeContent extends StatefulWidget {

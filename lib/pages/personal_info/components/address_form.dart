@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/components/custom_button.dart';
-import 'package:payuung_clone/presentation/personal_info/components/custom_field.dart';
-import 'package:payuung_clone/presentation/personal_info/components/custom_select_field.dart';
-import 'package:payuung_clone/presentation/personal_info/components/ktp_field.dart';
+import 'package:payuung_clone/pages/components/custom_button.dart';
+import 'package:payuung_clone/pages/personal_info/components/custom_field.dart';
+import 'package:payuung_clone/pages/personal_info/components/custom_select_field.dart';
+import 'package:payuung_clone/pages/personal_info/components/ktp_field.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class AddressForm extends StatefulWidget {

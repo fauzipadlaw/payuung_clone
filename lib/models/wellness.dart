@@ -1,37 +1,28 @@
 class Wellness {
+  final int? id;
   final String? title;
   final String? image;
-  final double? discount;
-  final double? oldPrice;
-  final double? price;
+  final num? discount;
+  final num? oldPrice;
+  final num? price;
 
   Wellness({
+    this.id,
     required this.image,
     required this.title,
     this.discount,
     this.oldPrice,
     required this.price,
   });
+  factory Wellness.fromJson(Map<String, dynamic> json) {
+    final well = Wellness(
+      id: json['id'] as int?,
+      image: json['image'] as String?,
+      title: json['title'] as String?,
+      discount: json['discount'] as num?,
+      oldPrice: json['old_price'] as num?,
+      price: json['price'] as num?,
+    );
+    return well;
+  }
 }
-
-final List<Wellness> dummy = [
-  Wellness(
-      title: 'Voucher Indomaret Rp25.000',
-      price: 25000,
-      image: 'indomaret.png'),
-  Wellness(
-      title: 'Voucher GrabFood Rp50.000',
-      price: 49000,
-      image: 'grab.png',
-      oldPrice: 50000,
-      discount: 3),
-  Wellness(title: 'Voucher Gojek Rp25.000', price: 25000, image: 'gojek.png'),
-  Wellness(title: 'Voucher H&M p25.000', price: 25000, image: 'hm.png'),
-  Wellness(
-      title: 'Voucher Alfamart Rp25.000',
-      price: 30000,
-      discount: 11,
-      oldPrice: 32000,
-      image: 'alfamart.png'),
-  Wellness(title: 'Voucher GrabFood Rp25.000', price: 25000, image: 'grab.png'),
-];

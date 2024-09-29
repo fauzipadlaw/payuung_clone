@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/profile/profile_page.dart';
+import 'package:payuung_clone/pages/profile/profile_page.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -7,7 +7,6 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return AppBar(
       backgroundColor: AppColors.yellow,
       elevation: 0.0,
@@ -31,7 +30,7 @@ class HomeAppBar extends StatelessWidget {
           ],
         ),
       ),
-      leadingWidth: size.width * 0.3,
+      leadingWidth: 200,
       actions: [
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),

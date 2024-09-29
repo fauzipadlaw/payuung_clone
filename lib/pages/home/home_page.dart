@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/home/components/home_app_bar.dart';
-import 'package:payuung_clone/presentation/home/components/home_content.dart';
+import 'package:payuung_clone/pages/home/components/home_app_bar.dart';
+import 'package:payuung_clone/pages/home/components/home_content.dart';
 import 'package:payuung_clone/utils/colors.dart';
 
 class HomePage extends StatefulWidget {

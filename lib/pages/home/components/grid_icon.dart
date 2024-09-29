@@ -21,6 +21,7 @@ class GridIcon extends StatelessWidget {
         Text(
           label,
           textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 13),
         ),
       ],
     );

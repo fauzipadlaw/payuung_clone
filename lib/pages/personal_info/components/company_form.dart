@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:payuung_clone/presentation/personal_info/components/custom_field.dart';
-import 'package:payuung_clone/presentation/personal_info/components/custom_select_field.dart';
+import 'package:payuung_clone/pages/personal_info/components/custom_field.dart';
+import 'package:payuung_clone/pages/personal_info/components/custom_select_field.dart';
 
 import '../../components/custom_button.dart';
 
